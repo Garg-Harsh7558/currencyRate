@@ -49,7 +49,7 @@ function App() {
     <>
       <div className="grid">
         {/* conversion from */}
-        <div className="justify-center flex ">
+        <div className="justify-center ">
           <div className="border-2 border-black w-1/3 h-24">
             <div className="flex justify-between">
               From
