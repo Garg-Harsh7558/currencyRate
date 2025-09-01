@@ -55,7 +55,7 @@ function App() {
               From
               <select
                 name="CURRENCY"
-                className="text-amber-900"
+                className=""
                 ref={to}
                 value={conFrom}
                 onChange={(e) => setConFrom(e.target.value)
