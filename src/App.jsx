@@ -10,9 +10,9 @@ function App() {
   const [color, setColor] = useState(false);
   const [options, setOptions] = useState([""]);
   const [valueAtInput, setValue] = useState(0);
-  const to=useRef(null)
-  const from=useRef(null)
- 
+  const to = useRef(null);
+  const from = useRef(null);
+
   const handleSwap = () => {
     setConFrom(conTo);
     setConTo(conFrom);
@@ -20,10 +20,9 @@ function App() {
     // from.current.value=conFrom
   };
   const calculation = () => {
-    return (Number(rates * valueAtInput).toFixed(3));
+    return Number(rates * valueAtInput).toFixed(3);
   };
   console.log(calculation());
-  const addColor = color ? "bg-red-400" : "bg-green-400";
 
   useEffect(() => {
     fetch(
@@ -47,19 +46,18 @@ function App() {
 
   return (
     <>
-      <div className="grid">
+      <div className="flex-col justify-center  content-center min-h-screen bg-gradient-to-r from-blue-200 to-purple-300 ">
         {/* conversion from */}
-        <div className="justify-center ">
-          <div className="border-2 border-black w-1/3 h-24">
-            <div className="flex justify-between">
+        <div className="justify-center items-center flex">
+          <div className="border-2 border-black w-1/3 h-24 p-2">
+            <div className="flex justify-between items-center">
               From
               <select
                 name="CURRENCY"
-                className=""
+                className="border px-2 py-1 rounded"
                 ref={to}
                 value={conFrom}
-                onChange={(e) => setConFrom(e.target.value)
-                }
+                onChange={(e) => setConFrom(e.target.value)}
                 id=""
               >
                 <option value="" disabled>
@@ -68,8 +66,10 @@ function App() {
                 {options}
               </select>
             </div>
+            {/* input */}
             <input
               type="number"
+              className="w-full mt-2 border px-2 py-1 bg-gray-100 rounded"
               onChange={(e) => {
                 setValue(Number(e.target.value));
               }}
@@ -77,26 +77,43 @@ function App() {
           </div>
         </div>
         {/* swap button */}
-        <button onClick={handleSwap} className={`${addColor}`}>
-          SWAP
-        </button>
+        <div className="flex justify-center">
+          <button
+            onClick={handleSwap}
+            className="h-12 w-1/3 cursor-pointer bg-blue-500 text-white font-semibold rounded shadow"
+          >
+            SWAP
+          </button>
+        </div>
         {/* convert to button */}
         <div className="justify-center flex">
-          <div className="border-2 border-black w-1/3 h-24">
-            <div className="flex justify-between">
+          <div className="border-2 border-black w-1/3 h-24 p-2">
+            <div className="flex justify-between items-center">
               From
-              <select name="CURRENCY" className="text-amber-900" id="" onChange={(e)=>{setConTo(e.target.value)
-                 console.log(rates)
-              }}
-              ref={from}
-              value={conTo}>
+              <select
+                name="CURRENCY"
+                className="text-amber-900 border px-2 py-1 rounded"
+                id=""
+                onChange={(e) => {
+                  setConTo(e.target.value);
+                  console.log(rates);
+                }}
+                ref={from}
+                value={conTo}
+              >
                 <option value="" disabled>
                   Select Currency
                 </option>
                 {options}
               </select>
             </div>
-            <input type="number" value={calculation() } readOnly />
+            {/* input */}
+            <input
+              type="number"
+              className="w-full mt-2 border px-2 py-1 rounded bg-gray-100"
+              value={calculation()}
+              readOnly
+            />
           </div>
         </div>
       </div>
